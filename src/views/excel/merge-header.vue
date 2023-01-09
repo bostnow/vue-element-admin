@@ -1,7 +1,13 @@
 <template>
   <div class="app-container">
-
-    <el-button :loading="downloadLoading" style="margin-bottom:20px" type="primary" icon="el-icon-document" @click="handleDownload">Export</el-button>
+    <el-button
+      :loading="downloadLoading"
+      style="margin-bottom: 20px"
+      type="primary"
+      icon="el-icon-document"
+      @click="handleDownload"
+      >Export</el-button
+    >
 
     <el-table
       ref="multipleTable"
@@ -37,11 +43,12 @@
       <el-table-column align="center" label="Date" width="220">
         <template slot-scope="scope">
           <i class="el-icon-time" />
-          <span>{{ scope.row.timestamp | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
+          <span>{{
+            scope.row.timestamp | parseTime('{y}-{m}-{d} {h}:{i}')
+          }}</span>
         </template>
       </el-table-column>
     </el-table>
-
   </div>
 </template>
 
@@ -55,7 +62,7 @@ export default {
     return {
       list: null,
       listLoading: true,
-      downloadLoading: false
+      downloadLoading: false,
     }
   },
   created() {
@@ -64,14 +71,14 @@ export default {
   methods: {
     fetchData() {
       this.listLoading = true
-      fetchList(this.listQuery).then(response => {
+      fetchList(this.listQuery).then((response) => {
         this.list = response.data.items
         this.listLoading = false
       })
     },
     handleDownload() {
       this.downloadLoading = true
-      import('@/vendor/Export2Excel').then(excel => {
+      import('@/vendor/Export2Excel').then((excel) => {
         const multiHeader = [['Id', 'Main Information', '', '', 'Date']]
         const header = ['', 'Title', 'Author', 'Readings', '']
         const filterVal = ['id', 'title', 'author', 'pageviews', 'display_time']
@@ -82,20 +89,22 @@ export default {
           multiHeader,
           header,
           merges,
-          data
+          data,
         })
         this.downloadLoading = false
       })
     },
     formatJson(filterVal, jsonData) {
-      return jsonData.map(v => filterVal.map(j => {
-        if (j === 'timestamp') {
-          return parseTime(v[j])
-        } else {
-          return v[j]
-        }
-      }))
-    }
-  }
+      return jsonData.map((v) =>
+        filterVal.map((j) => {
+          if (j === 'timestamp') {
+            return parseTime(v[j])
+          } else {
+            return v[j]
+          }
+        })
+      )
+    },
+  },
 }
 </script>

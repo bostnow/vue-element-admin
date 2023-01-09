@@ -2,7 +2,6 @@
   <div class="app-container">
     <div v-if="user">
       <el-row :gutter="20">
-
         <el-col :span="6" :xs="24">
           <user-card :user="user" />
         </el-col>
@@ -22,7 +21,6 @@
             </el-tabs>
           </el-card>
         </el-col>
-
       </el-row>
     </div>
   </div>
@@ -41,15 +39,11 @@ export default {
   data() {
     return {
       user: {},
-      activeTab: 'activity'
+      activeTab: 'activity',
     }
   },
   computed: {
-    ...mapGetters([
-      'name',
-      'avatar',
-      'roles'
-    ])
+    ...mapGetters(['name', 'avatar', 'roles']),
   },
   created() {
     this.getUser()
@@ -60,9 +54,9 @@ export default {
         name: this.name,
         role: this.roles.join(' | '),
         email: 'admin@test.com',
-        avatar: this.avatar
+        avatar: this.avatar,
       }
-    }
-  }
+    },
+  },
 }
 </script>

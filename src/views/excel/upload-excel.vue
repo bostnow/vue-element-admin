@@ -1,8 +1,21 @@
 <template>
   <div class="app-container">
-    <upload-excel-component :on-success="handleSuccess" :before-upload="beforeUpload" />
-    <el-table :data="tableData" border highlight-current-row style="width: 100%;margin-top:20px;">
-      <el-table-column v-for="item of tableHeader" :key="item" :prop="item" :label="item" />
+    <upload-excel-component
+      :on-success="handleSuccess"
+      :before-upload="beforeUpload"
+    />
+    <el-table
+      :data="tableData"
+      border
+      highlight-current-row
+      style="width: 100%; margin-top: 20px"
+    >
+      <el-table-column
+        v-for="item of tableHeader"
+        :key="item"
+        :prop="item"
+        :label="item"
+      />
     </el-table>
   </div>
 </template>
@@ -16,7 +29,7 @@ export default {
   data() {
     return {
       tableData: [],
-      tableHeader: []
+      tableHeader: [],
     }
   },
   methods: {
@@ -29,14 +42,14 @@ export default {
 
       this.$message({
         message: 'Please do not upload files larger than 1m in size.',
-        type: 'warning'
+        type: 'warning',
       })
       return false
     },
     handleSuccess({ results, header }) {
       this.tableData = results
       this.tableHeader = header
-    }
-  }
+    },
+  },
 }
 </script>

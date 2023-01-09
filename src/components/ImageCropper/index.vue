@@ -20,8 +20,16 @@
             <i class="vicp-icon1-bottom" />
           </i>
           <span v-show="loading !== 1" class="vicp-hint">{{ lang.hint }}</span>
-          <span v-show="!isSupported" class="vicp-no-supported-hint">{{ lang.noSupported }}</span>
-          <input v-show="false" v-if="step == 1" ref="fileinput" type="file" @change="handleChange">
+          <span v-show="!isSupported" class="vicp-no-supported-hint">{{
+            lang.noSupported
+          }}</span>
+          <input
+            v-show="false"
+            v-if="step == 1"
+            ref="fileinput"
+            type="file"
+            @change="handleChange"
+          />
         </div>
         <div v-show="hasError" class="vicp-error">
           <i class="vicp-icon2" />
@@ -57,9 +65,15 @@
                 @mousemove="imgMove"
                 @mouseup="createImg"
                 @mouseout="createImg"
-              >
-              <div :style="sourceImgShadeStyle" class="vicp-img-shade vicp-img-shade-1" />
-              <div :style="sourceImgShadeStyle" class="vicp-img-shade vicp-img-shade-2" />
+              />
+              <div
+                :style="sourceImgShadeStyle"
+                class="vicp-img-shade vicp-img-shade-1"
+              />
+              <div
+                :style="sourceImgShadeStyle"
+                class="vicp-img-shade vicp-img-shade-2"
+              />
             </div>
 
             <div class="vicp-range">
@@ -70,7 +84,7 @@
                 min="0"
                 max="100"
                 @input="zoomChange"
-              >
+              />
               <i
                 class="vicp-icon5"
                 @mousedown="startZoomSub"
@@ -86,18 +100,31 @@
             </div>
 
             <div v-if="!noRotate" class="vicp-rotate">
-              <i @mousedown="startRotateLeft" @mouseout="endRotate" @mouseup="endRotate">↺</i>
-              <i @mousedown="startRotateRight" @mouseout="endRotate" @mouseup="endRotate">↻</i>
+              <i
+                @mousedown="startRotateLeft"
+                @mouseout="endRotate"
+                @mouseup="endRotate"
+                >↺</i
+              >
+              <i
+                @mousedown="startRotateRight"
+                @mouseout="endRotate"
+                @mouseup="endRotate"
+                >↻</i
+              >
             </div>
           </div>
           <div v-show="true" class="vicp-crop-right">
             <div class="vicp-preview">
               <div v-if="!noSquare" class="vicp-preview-item">
-                <img :src="createImgUrl" :style="previewStyle">
+                <img :src="createImgUrl" :style="previewStyle" />
                 <span>{{ lang.preview }}</span>
               </div>
-              <div v-if="!noCircle" class="vicp-preview-item vicp-preview-item-circle">
-                <img :src="createImgUrl" :style="previewStyle">
+              <div
+                v-if="!noCircle"
+                class="vicp-preview-item vicp-preview-item-circle"
+              >
+                <img :src="createImgUrl" :style="previewStyle" />
                 <span>{{ lang.preview }}</span>
               </div>
             </div>
@@ -105,15 +132,26 @@
         </div>
         <div class="vicp-operate">
           <a @click="setStep(1)" @mousedown="ripple">{{ lang.btn.back }}</a>
-          <a class="vicp-operate-btn" @click="prepareUpload" @mousedown="ripple">{{ lang.btn.save }}</a>
+          <a
+            class="vicp-operate-btn"
+            @click="prepareUpload"
+            @mousedown="ripple"
+            >{{ lang.btn.save }}</a
+          >
         </div>
       </div>
 
       <div v-if="step == 3" class="vicp-step3">
         <div class="vicp-upload">
-          <span v-show="loading === 1" class="vicp-loading">{{ lang.loading }}</span>
+          <span v-show="loading === 1" class="vicp-loading">{{
+            lang.loading
+          }}</span>
           <div class="vicp-progress-wrap">
-            <span v-show="loading === 1" :style="progressStyle" class="vicp-progress" />
+            <span
+              v-show="loading === 1"
+              :style="progressStyle"
+              class="vicp-progress"
+            />
           </div>
           <div v-show="hasError" class="vicp-error">
             <i class="vicp-icon2" />
@@ -146,83 +184,83 @@ export default {
     // 域，上传文件name，触发事件会带上（如果一个页面多个图片上传控件，可以做区分
     field: {
       type: String,
-      default: 'avatar'
+      default: 'avatar',
     },
     // 原名key，类似于id，触发事件会带上（如果一个页面多个图片上传控件，可以做区分
     ki: {
       type: Number,
-      default: 0
+      default: 0,
     },
     // 显示该控件与否
     value: {
       type: Boolean,
-      default: true
+      default: true,
     },
     // 上传地址
     url: {
       type: String,
-      default: ''
+      default: '',
     },
     // 其他要上传文件附带的数据，对象格式
     params: {
       type: Object,
-      default: null
+      default: null,
     },
     // Add custom headers
     headers: {
       type: Object,
-      default: null
+      default: null,
     },
     // 剪裁图片的宽
     width: {
       type: Number,
-      default: 200
+      default: 200,
     },
     // 剪裁图片的高
     height: {
       type: Number,
-      default: 200
+      default: 200,
     },
     // 不显示旋转功能
     noRotate: {
       type: Boolean,
-      default: true
+      default: true,
     },
     // 不预览圆形图片
     noCircle: {
       type: Boolean,
-      default: false
+      default: false,
     },
     // 不预览方形图片
     noSquare: {
       type: Boolean,
-      default: false
+      default: false,
     },
     // 单文件大小限制
     maxSize: {
       type: Number,
-      default: 10240
+      default: 10240,
     },
     // 语言类型
     langType: {
       type: String,
-      default: 'zh'
+      default: 'zh',
     },
     // 语言包
     langExt: {
       type: Object,
-      default: null
+      default: null,
     },
     // 图片上传格式
     imgFormat: {
       type: String,
-      default: 'png'
+      default: 'png',
     },
     // 是否支持跨域
     withCredentials: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   data() {
     const { imgFormat, langType, langExt, width, height } = this
@@ -270,18 +308,18 @@ export default {
         mX: 0, // 鼠标按下的坐标
         mY: 0,
         x: 0, // scale原图坐标
-        y: 0
+        y: 0,
       },
       // 生成图片预览的容器大小
       previewContainer: {
         width: 100,
-        height: 100
+        height: 100,
       },
       // 原图容器宽高
       sourceImgContainer: {
         // sic
         width: 240,
-        height: 184 // 如果生成图比例与此一致会出现bug，先改成特殊的格式吧，哈哈哈
+        height: 184, // 如果生成图比例与此一致会出现bug，先改成特殊的格式吧，哈哈哈
       },
       // 原图展示属性
       scale: {
@@ -300,8 +338,8 @@ export default {
         minWidth: 0, // 最宽
         minHeight: 0,
         naturalWidth: 0, // 原宽
-        naturalHeight: 0
-      }
+        naturalHeight: 0,
+      },
     }
   },
   computed: {
@@ -309,7 +347,7 @@ export default {
     progressStyle() {
       const { progress } = this
       return {
-        width: progress + '%'
+        width: progress + '%',
       }
     },
     // 原图样式
@@ -326,7 +364,7 @@ export default {
         '-ms-transform': 'rotate(' + scale.degree + 'deg)', // 兼容IE9
         '-moz-transform': 'rotate(' + scale.degree + 'deg)', // 兼容FireFox
         '-webkit-transform': 'rotate(' + scale.degree + 'deg)', // 兼容Safari 和 chrome
-        '-o-transform': 'rotate(' + scale.degree + 'deg)' // 兼容 Opera
+        '-o-transform': 'rotate(' + scale.degree + 'deg)', // 兼容 Opera
       }
     },
     // 原图蒙版属性
@@ -354,7 +392,7 @@ export default {
         x,
         y,
         width: w,
-        height: h
+        height: h,
       }
     },
     // 原图遮罩样式
@@ -368,7 +406,7 @@ export default {
         sim.height === sic.height ? sim.height : (sic.height - sim.height) / 2
       return {
         width: w + 'px',
-        height: h + 'px'
+        height: h + 'px',
       }
     },
     previewStyle() {
@@ -385,16 +423,16 @@ export default {
       }
       return {
         width: w + 'px',
-        height: h + 'px'
+        height: h + 'px',
       }
-    }
+    },
   },
   watch: {
     value(newValue) {
       if (newValue && this.loading !== 1) {
         this.reset()
       }
-    }
+    },
   },
   created() {
     // 绑定按键esc隐藏此插件事件
@@ -479,7 +517,7 @@ export default {
     // 设置图片源
     setSourceImg(file) {
       const fr = new FileReader()
-      fr.onload = e => {
+      fr.onload = (e) => {
         this.sourceImgUrl = fr.result
         this.startCrop()
       }
@@ -494,7 +532,7 @@ export default {
         scale,
         sourceImgUrl,
         sourceImgMasking,
-        lang
+        lang,
       } = this
       const sim = sourceImgMasking
       const img = new Image()
@@ -565,7 +603,7 @@ export default {
       const {
         sourceImgMouseDown: { on, mX, mY, x, y },
         scale,
-        sourceImgMasking
+        sourceImgMasking,
       } = this
       const sim = sourceImgMasking
       const nX = et.screenX
@@ -598,7 +636,7 @@ export default {
         if (scale.rotateRight) {
           const degree = ++scale.degree
           this.createImg(degree)
-          setTimeout(function() {
+          setTimeout(function () {
             rotate()
           }, 60)
         }
@@ -613,7 +651,7 @@ export default {
         if (scale.rotateLeft) {
           const degree = --scale.degree
           this.createImg(degree)
-          setTimeout(function() {
+          setTimeout(function () {
             rotate()
           }, 60)
         }
@@ -634,7 +672,7 @@ export default {
         if (scale.zoomAddOn) {
           const range = scale.range >= 100 ? 100 : ++scale.range
           this.zoomImg(range)
-          setTimeout(function() {
+          setTimeout(function () {
             zoom()
           }, 60)
         }
@@ -653,7 +691,7 @@ export default {
         if (scale.zoomSubOn) {
           const range = scale.range <= 0 ? 0 : --scale.range
           this.zoomImg(range)
-          setTimeout(function() {
+          setTimeout(function () {
             zoom()
           }, 60)
         }
@@ -671,16 +709,8 @@ export default {
     // 缩放原图
     zoomImg(newRange) {
       const { sourceImgMasking, scale } = this
-      const {
-        maxWidth,
-        maxHeight,
-        minWidth,
-        minHeight,
-        width,
-        height,
-        x,
-        y
-      } = scale
+      const { maxWidth, maxHeight, minWidth, minHeight, width, height, x, y } =
+        scale
       const sim = sourceImgMasking
       // 蒙版宽高
       const sWidth = sim.width
@@ -722,7 +752,7 @@ export default {
         mime,
         sourceImg,
         scale: { x, y, width, height, degree },
-        sourceImgMasking: { scale }
+        sourceImgMasking: { scale },
       } = this
       const canvas = this.$refs.canvas
       const ctx = canvas.getContext('2d')
@@ -759,16 +789,8 @@ export default {
     },
     // 上传图片
     upload() {
-      const {
-        lang,
-        imgFormat,
-        mime,
-        url,
-        params,
-        field,
-        ki,
-        createImgUrl
-      } = this
+      const { lang, imgFormat, mime, url, params, field, ki, createImgUrl } =
+        this
       const fmData = new FormData()
       fmData.append(
         field,
@@ -777,7 +799,7 @@ export default {
       )
       // 添加其他参数
       if (typeof params === 'object' && params) {
-        Object.keys(params).forEach(k => {
+        Object.keys(params).forEach((k) => {
           fmData.append(k, params[k])
         })
       }
@@ -794,13 +816,13 @@ export default {
       request({
         url,
         method: 'post',
-        data: fmData
+        data: fmData,
       })
-        .then(resData => {
+        .then((resData) => {
           this.loading = 2
           this.$emit('crop-upload-success', resData.data)
         })
-        .catch(err => {
+        .catch((err) => {
           if (this.value) {
             this.loading = 3
             this.hasError = true
@@ -813,8 +835,8 @@ export default {
       if (this.value && (e.key === 'Escape' || e.keyCode === 27)) {
         this.off()
       }
-    }
-  }
+    },
+  },
 }
 </script>
 
@@ -920,7 +942,7 @@ export default {
 .vue-image-crop-upload .vicp-wrap .vicp-close .vicp-icon4::before {
   -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.23);
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.23);
-  content: "";
+  content: '';
   position: absolute;
   top: 12px;
   left: 4px;
@@ -1221,7 +1243,7 @@ export default {
   .vicp-range
   .vicp-icon5::before {
   position: absolute;
-  content: "";
+  content: '';
   display: block;
   left: 3px;
   top: 8px;
@@ -1246,7 +1268,7 @@ export default {
   .vicp-range
   .vicp-icon6::before {
   position: absolute;
-  content: "";
+  content: '';
   display: block;
   left: 3px;
   top: 8px;
@@ -1262,7 +1284,7 @@ export default {
   .vicp-range
   .vicp-icon6::after {
   position: absolute;
-  content: "";
+  content: '';
   display: block;
   top: 3px;
   left: 8px;
@@ -1276,7 +1298,7 @@ export default {
   .vicp-crop
   .vicp-crop-left
   .vicp-range
-  input[type="range"] {
+  input[type='range'] {
   display: block;
   padding-top: 5px;
   margin: 0 auto;
@@ -1299,7 +1321,7 @@ export default {
   .vicp-crop
   .vicp-crop-left
   .vicp-range
-  input[type="range"]:focus {
+  input[type='range']:focus {
   outline: none;
 }
 .vue-image-crop-upload
@@ -1308,7 +1330,7 @@ export default {
   .vicp-crop
   .vicp-crop-left
   .vicp-range
-  input[type="range"]::-webkit-slider-thumb {
+  input[type='range']::-webkit-slider-thumb {
   -webkit-box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.18);
   box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.18);
   -webkit-appearance: none;
@@ -1328,7 +1350,7 @@ export default {
   .vicp-crop
   .vicp-crop-left
   .vicp-range
-  input[type="range"]::-moz-range-thumb {
+  input[type='range']::-moz-range-thumb {
   box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.18);
   -moz-appearance: none;
   appearance: none;
@@ -1346,7 +1368,7 @@ export default {
   .vicp-crop
   .vicp-crop-left
   .vicp-range
-  input[type="range"]::-ms-thumb {
+  input[type='range']::-ms-thumb {
   box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.18);
   appearance: none;
   width: 12px;
@@ -1363,7 +1385,7 @@ export default {
   .vicp-crop
   .vicp-crop-left
   .vicp-range
-  input[type="range"]:active::-moz-range-thumb {
+  input[type='range']:active::-moz-range-thumb {
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.23);
   width: 14px;
   height: 14px;
@@ -1374,7 +1396,7 @@ export default {
   .vicp-crop
   .vicp-crop-left
   .vicp-range
-  input[type="range"]:active::-ms-thumb {
+  input[type='range']:active::-ms-thumb {
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.23);
   width: 14px;
   height: 14px;
@@ -1385,7 +1407,7 @@ export default {
   .vicp-crop
   .vicp-crop-left
   .vicp-range
-  input[type="range"]:active::-webkit-slider-thumb {
+  input[type='range']:active::-webkit-slider-thumb {
   -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.23);
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.23);
   margin-top: -4px;
@@ -1398,7 +1420,7 @@ export default {
   .vicp-crop
   .vicp-crop-left
   .vicp-range
-  input[type="range"]::-webkit-slider-runnable-track {
+  input[type='range']::-webkit-slider-runnable-track {
   -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12);
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12);
   width: 100%;
@@ -1414,7 +1436,7 @@ export default {
   .vicp-crop
   .vicp-crop-left
   .vicp-range
-  input[type="range"]::-moz-range-track {
+  input[type='range']::-moz-range-track {
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12);
   width: 100%;
   height: 6px;
@@ -1429,7 +1451,7 @@ export default {
   .vicp-crop
   .vicp-crop-left
   .vicp-range
-  input[type="range"]::-ms-track {
+  input[type='range']::-ms-track {
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12);
   width: 100%;
   cursor: pointer;
@@ -1446,7 +1468,7 @@ export default {
   .vicp-crop
   .vicp-crop-left
   .vicp-range
-  input[type="range"]::-ms-fill-lower {
+  input[type='range']::-ms-fill-lower {
   background-color: rgba(68, 170, 119, 0.3);
 }
 .vue-image-crop-upload
@@ -1455,7 +1477,7 @@ export default {
   .vicp-crop
   .vicp-crop-left
   .vicp-range
-  input[type="range"]::-ms-fill-upper {
+  input[type='range']::-ms-fill-upper {
   background-color: rgba(68, 170, 119, 0.15);
 }
 .vue-image-crop-upload
@@ -1464,7 +1486,7 @@ export default {
   .vicp-crop
   .vicp-crop-left
   .vicp-range
-  input[type="range"]:focus::-webkit-slider-runnable-track {
+  input[type='range']:focus::-webkit-slider-runnable-track {
   background-color: rgba(68, 170, 119, 0.5);
 }
 .vue-image-crop-upload
@@ -1473,7 +1495,7 @@ export default {
   .vicp-crop
   .vicp-crop-left
   .vicp-range
-  input[type="range"]:focus::-moz-range-track {
+  input[type='range']:focus::-moz-range-track {
   background-color: rgba(68, 170, 119, 0.5);
 }
 .vue-image-crop-upload
@@ -1482,7 +1504,7 @@ export default {
   .vicp-crop
   .vicp-crop-left
   .vicp-range
-  input[type="range"]:focus::-ms-fill-lower {
+  input[type='range']:focus::-ms-fill-lower {
   background-color: rgba(68, 170, 119, 0.45);
 }
 .vue-image-crop-upload
@@ -1491,7 +1513,7 @@ export default {
   .vicp-crop
   .vicp-crop-left
   .vicp-range
-  input[type="range"]:focus::-ms-fill-upper {
+  input[type='range']:focus::-ms-fill-upper {
   background-color: rgba(68, 170, 119, 0.25);
 }
 .vue-image-crop-upload .vicp-wrap .vicp-step2 .vicp-crop .vicp-crop-right {
@@ -1646,7 +1668,7 @@ export default {
   .vicp-upload
   .vicp-progress-wrap
   .vicp-progress::after {
-  content: "";
+  content: '';
   position: absolute;
   display: block;
   top: -3px;
@@ -1723,7 +1745,7 @@ export default {
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
-  content: "";
+  content: '';
 }
 .vue-image-crop-upload .vicp-wrap .vicp-icon2 {
   position: relative;
@@ -1734,7 +1756,7 @@ export default {
 }
 .vue-image-crop-upload .vicp-wrap .vicp-icon2::after,
 .vue-image-crop-upload .vicp-wrap .vicp-icon2::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 9px;
   left: 4px;
