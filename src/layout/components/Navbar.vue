@@ -28,7 +28,7 @@
       >
         <div class="avatar-wrapper">
           <img :src="avatar + '?imageView2/1/w/80/h/80'" class="user-avatar" />
-          <i class="el-icon-caret-bottom" />
+          <el-icon><el-icon-caret-bottom /></el-icon>
         </div>
         <template v-slot:dropdown>
           <el-dropdown-menu>
@@ -61,6 +61,7 @@
 </template>
 
 <script>
+import { CaretBottom as ElIconCaretBottom } from '@element-plus/icons'
 import { mapGetters } from 'vuex'
 import Breadcrumb from '@/components/Breadcrumb'
 import Hamburger from '@/components/Hamburger'
@@ -77,6 +78,7 @@ export default {
     Screenfull,
     SizeSelect,
     Search,
+    ElIconCaretBottom,
   },
   computed: {
     ...mapGetters(['sidebar', 'avatar', 'device']),

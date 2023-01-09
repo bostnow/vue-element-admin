@@ -58,7 +58,7 @@
       <el-table-column align="center" label="Actions" width="120">
         <template v-slot="scope">
           <router-link :to="'/example/edit/' + scope.row.id">
-            <el-button type="primary" size="small" icon="el-icon-edit">
+            <el-button type="primary" size="small" :icon="ElIconEdit">
               Edit
             </el-button>
           </router-link>
@@ -77,12 +77,11 @@
 </template>
 
 <script>
+import { Edit as ElIconEdit } from '@element-plus/icons'
 import { fetchList } from '@/api/article'
 import Pagination from '@/components/Pagination' // Secondary package based on el-pagination
 
 export default {
-  name: 'ArticleList',
-  components: { Pagination },
   data() {
     return {
       list: null,
@@ -92,8 +91,11 @@ export default {
         page: 1,
         limit: 20,
       },
+      ElIconEdit,
     }
   },
+  name: 'ArticleList',
+  components: { Pagination },
   created() {
     this.getList()
   },

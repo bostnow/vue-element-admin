@@ -22,7 +22,7 @@ export default {
   },
   computed: {
     scrollWrapper() {
-      return this.$refs.scrollContainer.$refs.wrap
+      return this.$refs.scrollContainer.$refs.wrap$
     },
   },
   mounted() {

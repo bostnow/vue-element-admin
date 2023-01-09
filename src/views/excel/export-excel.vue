@@ -8,7 +8,7 @@
         :loading="downloadLoading"
         style="margin: 0 0 20px 20px"
         type="primary"
-        icon="el-icon-document"
+        :icon="ElIconDocument"
         @click="handleDownload"
       >
         Export Excel
@@ -52,7 +52,7 @@
       </el-table-column>
       <el-table-column align="center" label="Date" width="220">
         <template v-slot="scope">
-          <i class="el-icon-time" />
+          <el-icon><el-icon-time /></el-icon>
           <span>{{
             $filters.parseTime(scope.row.timestamp, '{y}-{m}-{d} {h}:{i}')
           }}</span>
@@ -63,6 +63,10 @@
 </template>
 
 <script>
+import {
+  Time as ElIconTime,
+  Document as ElIconDocument,
+} from '@element-plus/icons'
 import { fetchList } from '@/api/article'
 import { parseTime } from '@/utils'
 // options components
@@ -71,8 +75,6 @@ import AutoWidthOption from './components/AutoWidthOption'
 import BookTypeOption from './components/BookTypeOption'
 
 export default {
-  name: 'ExportExcel',
-  components: { FilenameOption, AutoWidthOption, BookTypeOption },
   data() {
     return {
       list: null,
@@ -81,8 +83,16 @@ export default {
       filename: '',
       autoWidth: true,
       bookType: 'xlsx',
+      ElIconDocument,
     }
   },
+  components: {
+    FilenameOption,
+    AutoWidthOption,
+    BookTypeOption,
+    ElIconTime,
+  },
+  name: 'ExportExcel',
   created() {
     this.fetchData()
   },
