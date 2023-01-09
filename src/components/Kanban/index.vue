@@ -4,8 +4,8 @@
       {{ headerText }}
     </div>
     <draggable
-      :list="list"
       v-bind="$attrs"
+      :list="list"
       class="board-column-content"
       :set-data="setData"
     >
@@ -51,6 +51,7 @@ export default {
   },
 }
 </script>
+
 <style lang="scss" scoped>
 .board-column {
   min-width: 300px;
@@ -59,7 +60,6 @@ export default {
   overflow: hidden;
   background: #f0f0f0;
   border-radius: 3px;
-
   .board-column-header {
     height: 50px;
     line-height: 50px;

@@ -23,6 +23,7 @@
     />
   </div>
 </template>
+
 <script>
 import Kanban from '@/components/Kanban'
 
@@ -54,6 +55,7 @@ export default {
   },
 }
 </script>
+
 <style lang="scss">
 .board {
   width: 1000px;

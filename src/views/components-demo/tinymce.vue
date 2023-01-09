@@ -14,7 +14,7 @@
       >
     </aside>
     <div>
-      <tinymce v-model="content" :height="300" />
+      <tinymce v-model:value="content" :height="300" />
     </div>
     <div class="editor-content" v-html="content" />
   </div>

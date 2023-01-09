@@ -122,7 +122,6 @@ export default {
   padding: 32px;
   background-color: rgb(240, 242, 245);
   position: relative;
-
   .github-corner {
     position: absolute;
     top: 0px;
@@ -136,7 +135,6 @@ export default {
     margin-bottom: 32px;
   }
 }
-
 @media (max-width: 1024px) {
   .chart-wrapper {
     padding: 8px;

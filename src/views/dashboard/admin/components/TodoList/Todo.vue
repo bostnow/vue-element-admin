@@ -23,6 +23,7 @@
 </template>
 
 <script>
+import { $on, $off, $once, $emit } from '../../../../../utils/gogocodeTransfer'
 export default {
   name: 'Todo',
   directives: {
@@ -49,13 +50,13 @@ export default {
   },
   methods: {
     deleteTodo(todo) {
-      this.$emit('deleteTodo', todo)
+      $emit(this, 'deleteTodo', todo)
     },
     editTodo({ todo, value }) {
-      this.$emit('editTodo', { todo, value })
+      $emit(this, 'editTodo', { todo, value })
     },
     toggleTodo(todo) {
-      this.$emit('toggleTodo', todo)
+      $emit(this, 'toggleTodo', todo)
     },
     doneEdit(e) {
       const value = e.target.value.trim()
@@ -77,5 +78,6 @@ export default {
       this.editing = false
     },
   },
+  emits: ['deleteTodo', 'editTodo', 'toggleTodo'],
 }
 </script>

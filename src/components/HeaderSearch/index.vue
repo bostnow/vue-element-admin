@@ -7,7 +7,7 @@
     />
     <el-select
       ref="headerSearchSelect"
-      v-model="search"
+      v-model:value="search"
       :remote-method="querySearch"
       filterable
       default-first-option
@@ -160,7 +160,6 @@ export default {
 <style lang="scss" scoped>
 .header-search {
   font-size: 0 !important;
-
   .search-icon {
     cursor: pointer;
     font-size: 18px;

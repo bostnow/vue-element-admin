@@ -190,12 +190,10 @@ export default {
     }
   }
 }
-
 .box-center {
   margin: 0 auto;
   display: table;
 }
-
 .text-muted {
   color: #777;
 }

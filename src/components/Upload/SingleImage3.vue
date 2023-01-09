@@ -32,6 +32,7 @@
 </template>
 
 <script>
+import { $on, $off, $once, $emit } from '../../utils/gogocodeTransfer'
 import { getToken } from '@/api/qiniu'
 
 export default {
@@ -58,7 +59,7 @@ export default {
       this.emitInput('')
     },
     emitInput(val) {
-      this.$emit('input', val)
+      $emit(this, 'update:value', val)
     },
     handleImageSuccess(file) {
       this.emitInput(file.files.file)
@@ -82,6 +83,7 @@ export default {
       })
     },
   },
+  emits: ['update:value'],
 }
 </script>
 

@@ -34,20 +34,20 @@
     <footer v-show="todos.length" class="footer">
       <span class="todo-count">
         <strong>{{ remaining }}</strong>
-        {{ remaining | pluralize('item') }} left
+        {{ pluralize_filter(remaining, 'item') }} left
       </span>
       <ul class="filters">
         <li v-for="(val, key) in filters" :key="key">
           <a
             :class="{ selected: visibility === key }"
             @click.prevent="visibility = key"
-            >{{ key | capitalize }}</a
+            >{{ capitalize_filter(key) }}</a
           >
         </li>
       </ul>
       <!-- <button class="clear-completed" v-show="todos.length > remaining" @click="clearCompleted">
-        Clear completed
-      </button> -->
+          Clear completed
+        </button> -->
     </footer>
   </section>
 </template>
@@ -73,10 +73,6 @@ const defalutList = [
 ]
 export default {
   components: { Todo },
-  filters: {
-    pluralize: (n, w) => (n === 1 ? w : w + 's'),
-    capitalize: (s) => s.charAt(0).toUpperCase() + s.slice(1),
-  },
   data() {
     return {
       visibility: 'all',
@@ -97,6 +93,8 @@ export default {
     },
   },
   methods: {
+    capitalize_filter: (s) => s.charAt(0).toUpperCase() + s.slice(1),
+    pluralize_filter: (n, w) => (n === 1 ? w : w + 's'),
     setLocalStorage() {
       window.localStorage.setItem(STORAGE_KEY, JSON.stringify(this.todos))
     },

@@ -57,14 +57,12 @@ export default {
     content: '';
     clear: both;
   }
-
   &:after {
     display: table;
     content: '';
     clear: both;
   }
 }
-
 .main-article {
   padding: 20px;
   margin: 0 auto;
@@ -72,13 +70,11 @@ export default {
   width: 740px;
   background: #fff;
 }
-
 .article__heading {
   position: relative;
   padding: 0 0 20px;
   overflow: hidden;
 }
-
 .article__heading__title {
   display: block;
   display: -webkit-box;
@@ -93,7 +89,6 @@ export default {
   color: #333;
   overflow: hidden;
 }
-
 .node-article-content {
   margin: 20px 0 0;
   @include clearfix;
@@ -104,7 +99,6 @@ export default {
   margin-bottom: 30px;
   font-family: medium-content-serif-font, Georgia, Cambria, 'Times New Roman',
     Times, serif;
-
   & > :last-child {
     margin-bottom: 0;
   }

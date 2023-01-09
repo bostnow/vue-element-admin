@@ -64,7 +64,7 @@ export default {
   mounted() {
     window.addEventListener('scroll', this.handleScroll)
   },
-  beforeDestroy() {
+  beforeUnmount() {
     window.removeEventListener('scroll', this.handleScroll)
     if (this.interval) {
       clearInterval(this.interval)
@@ -106,21 +106,17 @@ export default {
   text-align: center;
   cursor: pointer;
 }
-
 .back-to-ceiling:hover {
   background: #d5dbe7;
 }
-
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.5s;
 }
-
 .fade-enter,
 .fade-leave-to {
   opacity: 0;
 }
-
 .back-to-ceiling .Icon {
   fill: #9aaabf;
   background: none;

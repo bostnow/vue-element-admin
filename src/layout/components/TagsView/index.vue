@@ -7,16 +7,17 @@
     >
       <router-link
         v-for="tag in visitedViews"
-        ref="tag"
+        :ref="getRefSetter('tag')"
         :key="tag.path"
         :class="isActive(tag) ? 'active' : ''"
         :to="{ path: tag.path, query: tag.query, fullPath: tag.fullPath }"
         tag="span"
         class="tags-view-item"
-        @click.middle.native="!isAffix(tag) ? closeSelectedTag(tag) : ''"
-        @contextmenu.prevent.native="openMenu(tag, $event)"
+        @click.middle="!isAffix(tag) ? closeSelectedTag(tag) : ''"
+        @contextmenu.prevent="openMenu(tag, $event)"
       >
         {{ tag.title }}
+
         <span
           v-if="!isAffix(tag)"
           class="el-icon-close"
@@ -45,6 +46,7 @@ import path from 'path'
 
 export default {
   components: { ScrollPane },
+
   data() {
     return {
       visible: false,
@@ -54,6 +56,7 @@ export default {
       affixTags: [],
     }
   },
+
   computed: {
     visitedViews() {
       return this.$store.state.tagsView.visitedViews
@@ -62,6 +65,7 @@ export default {
       return this.$store.state.permission.routes
     },
   },
+
   watch: {
     $route() {
       this.addTags()
@@ -75,10 +79,12 @@ export default {
       }
     },
   },
+
   mounted() {
     this.initTags()
     this.addTags()
   },
+
   methods: {
     isActive(route) {
       return route.path === this.$route.path
@@ -124,7 +130,7 @@ export default {
       return false
     },
     moveToCurrentTag() {
-      const tags = this.$refs.tag
+      const tags = this.$arrRefs.tag
       this.$nextTick(() => {
         for (const tag of tags) {
           if (tag.to.path === this.$route.path) {
@@ -211,6 +217,17 @@ export default {
     handleScroll() {
       this.closeMenu()
     },
+    getRefSetter(refKey) {
+      return (ref) => {
+        !this.$arrRefs && (this.$arrRefs = {})
+        !this.$arrRefs[refKey] && (this.$arrRefs[refKey] = [])
+        ref && this.$arrRefs[refKey].push(ref)
+      }
+    },
+  },
+
+  beforeUpdate() {
+    this.$arrRefs && (this.$arrRefs = {})
   },
 }
 </script>

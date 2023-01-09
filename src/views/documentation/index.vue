@@ -91,7 +91,6 @@ export default {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-
   .document-btn {
     flex-shrink: 0;
     display: block;

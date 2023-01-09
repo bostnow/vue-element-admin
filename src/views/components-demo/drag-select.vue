@@ -1,7 +1,7 @@
 <template>
   <div class="components-container">
     <el-drag-select
-      v-model="value"
+      v-model:value="value"
       style="width: 500px"
       multiple
       placeholder="请选择"

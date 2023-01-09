@@ -49,7 +49,6 @@ export default {
   width: 45%;
   margin: 0 auto;
 }
-
 .dashboard-editor-container {
   background-color: #e3e3e3;
   min-height: 100vh;
